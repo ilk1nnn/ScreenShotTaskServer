@@ -29,6 +29,7 @@ namespace TcpServerToClientSendSS
         {
             InitializeComponent();
             App.MainViewModel = new MainViewModel();
+            App.MainViewModel.StackPanel = mystackpanel;
             DataContext = App.MainViewModel;
         }
 

@@ -29,6 +29,10 @@ namespace TcpServerToClientSendSS.ViewModels
             }
         }
 
+       
+
+
+
         private string source;
 
         public string Source
@@ -45,6 +49,21 @@ namespace TcpServerToClientSendSS.ViewModels
         }
 
 
+
+        private StackPanel stackPanel;
+
+        public StackPanel StackPanel
+        {
+            get
+            {
+                return stackPanel;
+            }
+            set
+            {
+                stackPanel = value;
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(StackPanel)));
+            }
+        }
 
         private ObservableCollection<StackPanel> allScreens;
 

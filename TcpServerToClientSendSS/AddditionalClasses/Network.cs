@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using TcpServerToClientSendSS.ViewModels;
 
 namespace TcpServerToClientSendSS.AddditionalClasses
@@ -23,7 +24,7 @@ namespace TcpServerToClientSendSS.AddditionalClasses
                 IPAddress localAddr = IPAddress.Parse(NetworkProtocol.IPAddress);
                 server = new TcpListener(localAddr, NetworkProtocol.TcpPort);
                 server.Start();
-                byte[] bytes = new byte[5000000];
+                byte[] bytes = new byte[3000000];
                 while (true)
                 {
                     TcpClient client = server.AcceptTcpClient();
@@ -48,6 +49,16 @@ namespace TcpServerToClientSendSS.AddditionalClasses
                                 App.Current.Dispatcher.Invoke(() =>
                                 {
                                     App.MainViewModel.Source = path;
+                                    Uri imageUri = new Uri(path,UriKind.Relative);
+                                    BitmapImage bitmapImage= new BitmapImage(imageUri);
+                                    Image image = new Image();
+                                    image.Source = bitmapImage;
+                                    App.MainViewModel.StackPanel.Children.Add(image);
+                                    //String stringPath = "Pictures/myPicture.jpg";
+                                    //Uri imageUri = new Uri(stringPath, UriKind.Relative);
+                                    //BitmapImage imageBitmap = new BitmapImage(imageUri);
+                                    //Image myImage = new Image();
+                                    //myImage.Source = imageBitmap;
                                     //ScreenClass screenClass = new ScreenClass();
                                     //screenClass.Source = path;
                                     //App.MainViewModel.AllScreens.Add(screenClass);
