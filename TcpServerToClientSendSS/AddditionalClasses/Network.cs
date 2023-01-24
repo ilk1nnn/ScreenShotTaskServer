@@ -24,7 +24,7 @@ namespace TcpServerToClientSendSS.AddditionalClasses
                 IPAddress localAddr = IPAddress.Parse(NetworkProtocol.IPAddress);
                 server = new TcpListener(localAddr, NetworkProtocol.TcpPort);
                 server.Start();
-                byte[] bytes = new byte[3000000];
+                byte[] bytes = new byte[5000000];
                 while (true)
                 {
                     TcpClient client = server.AcceptTcpClient();
@@ -42,18 +42,18 @@ namespace TcpServerToClientSendSS.AddditionalClasses
                         {
 
                             ImageHelper imageHelper = new ImageHelper();
-                            path = imageHelper.GetImagePath(bytes, ++c);
+                            path = imageHelper.GetImagePathJpeg(bytes, ++c);
 
                             Task.Run(() =>
                             {
                                 App.Current.Dispatcher.Invoke(() =>
                                 {
                                     App.MainViewModel.Source = path;
-                                    Uri imageUri = new Uri(path,UriKind.Relative);
-                                    BitmapImage bitmapImage= new BitmapImage(imageUri);
-                                    Image image = new Image();
-                                    image.Source = bitmapImage;
-                                    App.MainViewModel.StackPanel.Children.Add(image);
+                                    //Uri imageUri = new Uri(path,UriKind.Relative);
+                                    //BitmapImage bitmapImage= new BitmapImage(imageUri);
+                                    //Image image = new Image();
+                                    //image.Source = bitmapImage;
+                                    //App.MainViewModel.StackPanel.Children.Add(image);
                                     //String stringPath = "Pictures/myPicture.jpg";
                                     //Uri imageUri = new Uri(stringPath, UriKind.Relative);
                                     //BitmapImage imageBitmap = new BitmapImage(imageUri);
