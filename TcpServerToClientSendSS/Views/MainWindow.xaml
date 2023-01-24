@@ -3,20 +3,26 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TcpServerToClientSendSS"
+        xmlns:local="clr-namespace:TcpServerToClientSendSS" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="1200" WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel>
             <StackPanel Name="mystackpanel" Width="1150" Height="450" Background="White" Orientation="Horizontal">
-                <Image Width="350" Height="200" Source="{Binding Source,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></Image>
+                <Image Width="350" Height="200" Source="{Binding Source,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                    <!--<i:Interaction.Triggers>
+                        <i:EventTrigger EventName="ImageClickingEvent">
+                            <i:InvokeCommandAction Command="{Binding ImageCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>-->
+                </Image>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBox Width="200" Height="50" FontSize="18" Text="{Binding IpAddress}"></TextBox>
                 <Button Width="200" Height="50" HorizontalAlignment="Right" Content="Connect" 
                     Command="{Binding ConnectCommand}"
                     FontSize="18" Click="Button_Click"></Button>
-                <Label Width="150" Height="50" Content="{Binding Timer}"></Label>
+                <Button FontSize="40" Command="{Binding ImageCommand}">Full Screen View</Button>
             </StackPanel>
         </StackPanel>
 

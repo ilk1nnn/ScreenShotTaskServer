@@ -15,5 +15,6 @@ namespace TcpServerToClientSendSS
     public partial class App : Application
     {
         public static MainViewModel MainViewModel;
+        public static ScreenViewModel ScreenViewModel;
     }
 }

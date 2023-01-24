@@ -21,7 +21,7 @@ namespace TcpServerToClientSendSS.AddditionalClasses
             try
             {
                 App.MainViewModel.AllScreens = new System.Collections.ObjectModel.ObservableCollection<StackPanel>();
-                IPAddress localAddr = IPAddress.Parse(NetworkProtocol.IPAddress);
+                IPAddress localAddr = IPAddress.Parse(IPAddress.Any.ToString());
                 server = new TcpListener(localAddr, NetworkProtocol.TcpPort);
                 server.Start();
                 byte[] bytes = new byte[5000000];
@@ -37,18 +37,21 @@ namespace TcpServerToClientSendSS.AddditionalClasses
                         NetworkStream stream = client.GetStream();
                         int i;
                         string path = String.Empty;
+                        string path2 = String.Empty;
                         // Loop to receive all the data sent by the client.
                         while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
                         {
 
                             ImageHelper imageHelper = new ImageHelper();
                             path = imageHelper.GetImagePathJpeg(bytes, ++c);
+                            path2 = imageHelper.GetImagePath(bytes,++c);    
 
                             Task.Run(() =>
                             {
                                 App.Current.Dispatcher.Invoke(() =>
                                 {
                                     App.MainViewModel.Source = path;
+                                    App.ScreenViewModel.Source = path2;
                                     //Uri imageUri = new Uri(path,UriKind.Relative);
                                     //BitmapImage bitmapImage= new BitmapImage(imageUri);
                                     //Image image = new Image();
@@ -72,7 +75,7 @@ namespace TcpServerToClientSendSS.AddditionalClasses
             }
             catch (SocketException e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show("Error");
             }
             finally
             {

@@ -14,6 +14,7 @@ namespace TcpServerToClientSendSS.ViewModels
     {
 
         public ConnectCommand ConnectCommand => new ConnectCommand(this);
+        public ImageCommand ImageCommand => new ImageCommand(this);
         private string ipAddress;
 
         public string IpAddress
